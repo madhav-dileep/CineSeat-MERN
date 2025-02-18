@@ -1,14 +1,26 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, ModalBody } from 'react-bootstrap'
 import ViewMovieDetails from './ViewMovieDetails'
-ViewMovieDetails
+import QRCode from "react-qr-code";
 
 const BookedMoviesList = () => {
 
     const [show, setShow] = useState(false)
+    const [qr,setQr] = useState(false)
+    const [qrText,setQrText] = useState('')
+
+    const handleQr = () => {
+        setQr(!qr)
+    }
 
     const handleShow = () => {
         setShow(!show)
+    }
+
+    const handleQRCode = (qrText) => {
+        console.log(qrText);
+        setQrText(qrText)
+        handleQr()
     }
 
   return (
@@ -33,7 +45,7 @@ const BookedMoviesList = () => {
                         <td>1</td>
                         <td>Captain America</td>
                         <td>15 Feb 2025 | 11:00 pm</td>
-                        <td>664sa1dsad6s6165as166</td>
+                        <td onClick={()=>handleQRCode('664sa1dsad6s6165as166')} style={{cursor:'pointer'}} className='text-decoration-underline text-danger'>664sa1dsad6s6165as166</td>
                         <td>11, 12, 13</td>
                         <td><ViewMovieDetails userSide={true}/></td>
                         {/* <td><i style={{color:'red',cursor:'pointer'}} className="fa-solid fa-trash"></i></td> */}
@@ -44,7 +56,9 @@ const BookedMoviesList = () => {
             </table>
         </div>
 
-        <Modal size='md' show={show} onHide={handleShow}>
+       
+
+        <Modal size='sm' show={show} onHide={handleShow}>
             <Modal.Header style={{fontSize:'1.8em',fontWeight:700,color:'white'}}>
             Are you Sure, You want to cancel the booking? 
             </Modal.Header>
@@ -57,6 +71,12 @@ const BookedMoviesList = () => {
                 </Button>
             </Modal.Footer>
         </Modal>
+        <Modal size='md' centered show={qr} onHide={handleQr}>
+            <Modal.Body className=' text-center'>
+                <QRCode size={256} className='' value={qrText}/>
+            </Modal.Body>
+        </Modal>
+        
     </>
   )
 }

@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import avatar from '../assets/avatar 1.png'
 import MovieList from '../components/MovieList'
 import BookedMoviesList from '../components/BookedMoviesList'
-
+import QRCode from "react-qr-code";
 
 const Profile = () => {
 

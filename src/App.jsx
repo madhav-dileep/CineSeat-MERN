@@ -19,8 +19,9 @@ function App() {
       <Routes>
           <Route path='/' element={<Home loginStatus={loginStatus}/>}/>
           <Route path='/:id/view' element={<View/>}/>
-          <Route path='/:id/bookings' element={<Bookings/>}/>
-          <Route path='/profile' element={<Profile/>}/>          <Route path='/movies' element={<Movies/>}/>
+          {/* <Route path='/:id/bookings' element={<Bookings/>}/> */}
+          <Route path='/profile' element={<Profile/>}/>       
+          <Route path='/movies' element={<Movies/>}/>
           <Route path='/login' element={<Auth setLoginStatus={setLoginStatus}/>}/>
           <Route path='/gallery' element={<Gallery/>}/>
           <Route path='/register' element={<Auth insideRegister={true}/>}/>
